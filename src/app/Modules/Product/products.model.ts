@@ -18,6 +18,7 @@ const inventorySchema = new Schema<TInventory>(
 );
 
 const productSchema = new Schema<TProducts>({
+  id: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   description: { type: String, required: [true, 'Description are required'] },
   price: { type: Number, required: true },
