@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
+import { productsController } from './products.controller';
 const router = express.Router();
 
-router.post('/', (req: Request, res: Response) => {
-  console.log('Hi');
-});
+router.post('/', productsController.productControllerFunction);
 
 export const ProductRoute = router;
