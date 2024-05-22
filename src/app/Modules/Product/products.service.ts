@@ -9,8 +9,13 @@ const getAllProduct = async () => {
   const result = await ProductModel.find();
   return result;
 };
+const getSingledata = async (id: string) => {
+  const result = await ProductModel.findOne({ id });
+  return result;
+};
 
 export const ProductService = {
   createProduct,
   getAllProduct,
+  getSingledata,
 };

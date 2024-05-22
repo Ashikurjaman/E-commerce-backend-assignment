@@ -36,7 +36,29 @@ const getProductControllerFunction = async (req: Request, res: Response) => {
   }
 };
 
+const getSingleProductFunction = async (req: Request, res: Response) => {
+  try {
+    const getSingleProduct = req.params?.productID;
+    const result = await ProductService.getSingledata(getSingleProduct);
+    res.status(200).json({
+      success: true,
+      message: 'Products fetched successfully!',
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Could not fetched products!',
+      error: error,
+    });
+  }
+};
+
+const productDataUpdateFunction = async (req: Request, res: Response) => {};
+
 export const productsController = {
   createProductController,
   getProductControllerFunction,
+  getSingleProductFunction,
+  productDataUpdateFunction,
 };
