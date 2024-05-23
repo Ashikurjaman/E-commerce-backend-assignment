@@ -8,6 +8,7 @@ app.use(cors());
 
 app.use('/api/products', ProductRoute);
 app.use('/api/products/:productId', ProductRoute);
+app.use('/api/products?searchTerm=', ProductRoute);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
