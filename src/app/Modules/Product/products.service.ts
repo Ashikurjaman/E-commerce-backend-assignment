@@ -1,4 +1,3 @@
-import { object } from 'joi';
 import { TProducts } from './products.interface';
 import { ProductModel } from './products.model';
 
