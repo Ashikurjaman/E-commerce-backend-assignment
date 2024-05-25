@@ -8,9 +8,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/products', ProductRoute);
-app.use('/api/products/:productId', ProductRoute);
-app.use('/api/products?searchTerm=', ProductRoute);
-
 app.use('/api/orders', OrderRoute);
 
 app.get('/', (req: Request, res: Response) => {

@@ -57,7 +57,11 @@ const getSingleProductFunction = async (req: Request, res: Response) => {
 const productDataUpdateFunction = async (req: Request, res: Response) => {
   try {
     const getSingleProduct = req.params?.productID;
-    const result = await ProductService.productDelete(getSingleProduct);
+    const getData = req.body;
+    const result = await ProductService.updateSingleData(
+      getSingleProduct,
+      getData,
+    );
     res.status(200).json({
       success: true,
       message: 'Product updated successfully!',
@@ -91,8 +95,8 @@ const productDataDeleteFunction = async (req: Request, res: Response) => {
 };
 const searchProduct = async (req: Request, res: Response) => {
   try {
-    const { searchTerm } = req.query as { searchTerm: string };
-    console.log(`${searchTerm}`);
+    const searchTerm = req.query.searchTerm as string;
+    console.log(searchTerm);
     const result = await ProductService.searchProduct(searchTerm);
     res.status(200).json({
       success: true,

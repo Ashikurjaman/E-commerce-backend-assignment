@@ -14,14 +14,8 @@ const getSingledata = async (id: string) => {
   return result;
 };
 const searchProduct = async (searchTerm: string) => {
-  const result = await ProductModel.find({
-    $or: [
-      {
-        name: new RegExp(searchTerm, 'i'),
-      },
-      { description: new RegExp(searchTerm, 'i') },
-    ],
-  });
+  const regex = new RegExp(searchTerm, 'i');
+  const result = await ProductModel.find({ name: regex });
   return result;
 };
 const productDelete = async (_id: string) => {
