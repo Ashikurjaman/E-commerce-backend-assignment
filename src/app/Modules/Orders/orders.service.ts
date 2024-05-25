@@ -36,7 +36,13 @@ const getOrder = async () => {
   return result;
 };
 
+const order = async (payload: string) => {
+  const result = await OrderModel.find({ payload });
+  return result;
+};
+
 export const OrderService = {
   createOrder,
   getOrder,
+  order,
 };

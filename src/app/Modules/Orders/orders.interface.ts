@@ -9,3 +9,7 @@ export interface OrderDataRequest extends OrderItem {
   email: string;
   items: OrderItem[];
 }
+
+export interface OrderQuery {
+  email: string;
+}
