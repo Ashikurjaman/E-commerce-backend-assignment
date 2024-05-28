@@ -20,37 +20,54 @@ const createProductController = async (req: Request, res: Response) => {
 };
 
 const getProductControllerFunction = async (req: Request, res: Response) => {
-  try {
-    const result = await ProductService.getAllProduct();
-    res.status(200).json({
-      success: true,
-      message: 'Products fetched successfully!',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Could not fetched products!',
-      error: error,
-    });
-  }
-};
+  const getSingleProduct = req.params?.productID;
+  const searchTerm = req.query.searchTerm as string;
 
-const getSingleProductFunction = async (req: Request, res: Response) => {
-  try {
-    const getSingleProduct = req.params?.productID;
-    const result = await ProductService.getSingledata(getSingleProduct);
-    res.status(200).json({
-      success: true,
-      message: 'Products fetched successfully!',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Could not fetched products!',
-      error: error,
-    });
+  if (getSingleProduct) {
+    try {
+      const result = await ProductService.getSingledata(getSingleProduct);
+      res.status(200).json({
+        success: true,
+        message: 'Products fetched successfully!',
+        data: result,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Could not fetched products!',
+        error: error,
+      });
+    }
+  } else if (searchTerm) {
+    try {
+      const result = await ProductService.searchProduct(searchTerm);
+      res.status(200).json({
+        success: true,
+        message: 'Products matching search term iphone fetched successfully!',
+        data: result,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Product not found!',
+        error: error,
+      });
+    }
+  } else {
+    try {
+      const result = await ProductService.getAllProduct();
+      res.status(200).json({
+        success: true,
+        message: 'Products fetched successfully!',
+        data: result,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Could not fetched products!',
+        error: error,
+      });
+    }
   }
 };
 
@@ -93,29 +110,11 @@ const productDataDeleteFunction = async (req: Request, res: Response) => {
     });
   }
 };
-const searchProduct = async (req: Request, res: Response) => {
-  try {
-    const searchTerm = req.query.searchTerm as string;
-    console.log(searchTerm);
-    const result = await ProductService.searchProduct(searchTerm);
-    res.status(200).json({
-      success: true,
-      message: 'Products matching search term iphone fetched successfully!',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Product not found!',
-      error: error,
-    });
-  }
-};
+const searchProduct = async (req: Request, res: Response) => {};
 
 export const productsController = {
   createProductController,
   getProductControllerFunction,
-  getSingleProductFunction,
   productDataUpdateFunction,
   productDataDeleteFunction,
   searchProduct,
