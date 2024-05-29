@@ -1,6 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 import { OrderDataRequest, OrderItem } from './orders.interface';
-import { number } from 'joi';
 
 const OrderItem: Schema = new Schema<OrderItem>({
   productId: { type: Schema.Types.ObjectId, ref: 'products', required: true },

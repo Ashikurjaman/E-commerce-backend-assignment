@@ -1,4 +1,3 @@
-import { number } from 'joi';
 import { ProductModel } from '../Product/products.model';
 import { OrderModel } from './orders.model';
 import mongoose from 'mongoose';
