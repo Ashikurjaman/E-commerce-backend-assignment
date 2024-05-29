@@ -39,7 +39,7 @@ const getDataByEmailAndAll = async (req: Request, res: Response) => {
       const result = await OrderService.getOrder();
       res.status(200).json({
         success: true,
-        message: 'Orders fetched successfully for user email!',
+        message: 'Orders fetched successfully!',
         data: result,
       });
     }
